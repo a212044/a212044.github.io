@@ -1,531 +1,748 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student e-Portfolio | Mobile Programming</title>
-    <style>
-        :root {
-            --primary-color: #d81b60; /* Vibrant Pink */
-            --primary-light: #fce4ec; /* Light Pastel Pink */
-            --secondary-color: #8e24aa; /* Purple Accent */
-            --text-dark: #333333;
-            --text-light: #666666;
-            --bg-light: #fff5f8; /* Soft Pinkish Background */
-            --card-bg: #ffffff;
-            --border-color: #f8bbd0; /* Soft Pink Border */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arieka Syafiqah — e-Portfolio | TM2213</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pink: #c2185b;
+  --pink-dark: #880e4f;
+  --pink-mid: #e91e8c;
+  --pink-soft: #f8bbd0;
+  --pink-pale: #fce4ec;
+  --pink-blush: #fff0f5;
+  --cream: #fefcfb;
+  --ink: #1a0810;
+  --ink-2: #4a1530;
+  --ink-3: #8a5570;
+  --border: #f0c8d8;
+  --white: #ffffff;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;font-weight:300;background:var(--cream);color:var(--ink);line-height:1.65;font-size:15px}
 
-        html {
-            scroll-behavior: smooth;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:200;
+  background:var(--pink-dark);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;
+}
+.nav-brand{
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:1rem;
+  color:rgba(255,255,255,0.85);
+  padding:1rem 0;letter-spacing:0.02em;
+}
+.nav-links{display:flex}
+.nav-links a{
+  color:rgba(255,255,255,0.6);text-decoration:none;
+  font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;
+  font-weight:500;padding:1.3rem 1rem;
+  border-bottom:2px solid transparent;
+  transition:color 0.2s,border-color 0.2s;
+}
+.nav-links a:hover{color:#fff;border-bottom-color:var(--pink-soft)}
 
-        body {
-            background-color: var(--bg-light);
-        }
+/* ── HERO ── */
+.hero{
+  background:var(--pink-dark);
+  padding:6rem 3rem 0;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;height:80px;
+  background:var(--cream);
+  clip-path:ellipse(55% 100% at 50% 100%);
+}
+.hero-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;padding-bottom:5rem}
+.hero-kicker{
+  font-size:0.65rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--pink-soft);margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:0.8rem;
+}
+.hero-kicker::before{content:'';width:30px;height:1px;background:var(--pink-soft);display:block}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,5vw,4rem);font-weight:900;
+  line-height:1.08;color:#fff;margin-bottom:2rem;
+}
+.hero h1 span{color:var(--pink-soft)}
+.hero-meta-row{
+  display:flex;align-items:center;gap:0.5rem;
+  font-size:0.8rem;color:rgba(255,255,255,0.55);
+  margin-bottom:0.4rem;letter-spacing:0.03em;
+}
+.hero-meta-label{
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);width:90px;flex-shrink:0;font-weight:500;
+}
+.hero-right{display:flex;flex-direction:column;gap:2rem;padding-bottom:0.5rem}
+.hero-intro{
+  font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:1.3rem;line-height:1.65;color:rgba(255,255,255,0.8);
+  border-left:3px solid var(--pink-mid);padding-left:1.4rem;
+}
+.sdg-block{
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:10px;padding:1.3rem;
+  display:flex;gap:1.2rem;align-items:flex-start;
+}
+.sdg-num-big{
+  font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;
+  color:var(--pink-soft);line-height:1;flex-shrink:0;
+}
+.sdg-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:0.3rem}
+.sdg-name{font-size:0.95rem;font-weight:500;color:#fff;margin-bottom:0.3rem}
+.sdg-desc{font-size:0.82rem;color:rgba(255,255,255,0.6);line-height:1.6}
+.hero-pills{display:flex;flex-wrap:wrap;gap:0.4rem}
+.hero-pill{
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);
+  border-radius:4px;padding:0.25rem 0.75rem;
+  font-size:0.68rem;letter-spacing:0.08em;color:rgba(255,255,255,0.7);
+}
 
-        /* Navigation */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: var(--card-bg);
-            box-shadow: 0 2px 5px rgba(216, 27, 96, 0.15);
-        }
+/* ── PAGE WRAPPER ── */
+.page{max-width:1060px;margin:0 auto;padding:0 3rem}
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
+/* ── SECTION HEADER ── */
+.sec-head{display:flex;align-items:baseline;gap:1.5rem;margin-bottom:3.5rem;padding-top:5rem}
+.sec-num{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:3.5rem;font-weight:700;color:var(--pink-soft);
+  line-height:1;flex-shrink:0;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;color:var(--ink);line-height:1.15;
+}
+.sec-rule{flex:1;height:2px;background:var(--pink-soft);align-self:center}
 
-        .nav-brand {
-            font-weight: bold;
-            font-size: 1.25rem;
-            color: var(--primary-color);
-        }
+/* ── LABS ── */
+.labs-wrap{padding-bottom:5rem}
+.lab-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  margin-bottom:2rem;
+  transition:box-shadow 0.2s;
+}
+.lab-card:hover{box-shadow:0 6px 32px rgba(194,24,91,0.1)}
+.lab-card-top{
+  background:linear-gradient(135deg,var(--pink-dark) 0%,var(--pink) 100%);
+  padding:1.6rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.lab-num-badge{
+  font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;
+  color:rgba(255,255,255,0.18);line-height:1;
+}
+.lab-card-title{
+  font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;
+  color:#fff;flex:1;
+}
+.lab-badge{
+  background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
+  border-radius:4px;padding:0.25rem 0.75rem;
+  font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.85);
+  white-space:nowrap;
+}
+.lab-body{padding:2rem}
+.lab-btns{display:flex;gap:0.8rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.btn-fill{
+  background:var(--pink);color:#fff;
+  border:none;border-radius:6px;padding:0.55rem 1.2rem;
+  font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;
+  transition:background 0.2s;cursor:pointer;
+}
+.btn-fill:hover{background:var(--pink-dark)}
+.btn-line{
+  background:transparent;color:var(--ink-2);
+  border:1.5px solid var(--border);border-radius:6px;padding:0.55rem 1.2rem;
+  font-size:0.75rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;
+  transition:border-color 0.2s,color 0.2s;cursor:pointer;
+}
+.btn-line:hover{border-color:var(--pink);color:var(--pink)}
+.video-wrap{
+  position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+  border-radius:10px;margin-bottom:1.5rem;background:var(--pink-pale);
+}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.ref-label{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--pink);font-weight:600;margin-bottom:0.5rem;
+}
+.ref-text{
+  font-size:0.9rem;color:var(--ink-2);line-height:1.8;
+  padding-left:1rem;border-left:2px solid var(--pink-soft);
+}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
+/* ── PROJECTS ── */
+.projects-bg{background:var(--pink-pale)}
+.projects-bg .page{padding-bottom:5rem}
+.proj-card{
+  background:var(--white);border-radius:16px;
+  border:1px solid var(--border);overflow:hidden;margin-bottom:2.5rem;
+}
+.proj-card:last-child{margin-bottom:0}
+.proj-header{
+  background:var(--ink);padding:1.8rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.proj-num{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:0.8rem;color:var(--pink-soft);letter-spacing:0.05em;
+}
+.proj-name{
+  font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;
+  color:#fff;display:flex;align-items:center;gap:0.6rem;
+}
+.proj-tag{
+  font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;
+  border:1px solid rgba(255,255,255,0.2);border-radius:4px;
+  padding:0.25rem 0.75rem;color:rgba(255,255,255,0.65);white-space:nowrap;
+}
+.proj-body{padding:2rem}
+.proj-video{
+  position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+  border-radius:10px;margin-bottom:2rem;background:var(--pink-pale);
+}
+.proj-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+.proj-fields{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem 2.5rem;margin-bottom:2rem}
+.proj-field-full{grid-column:1/-1}
+.field-label{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--pink);font-weight:600;margin-bottom:0.5rem;
+}
+.field-text{font-size:0.88rem;color:var(--ink-2);line-height:1.8}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+/* ── REFLECTION ── */
+.refl-bg{background:var(--white)}
+.refl-bg .page{padding-bottom:5rem}
+.refl-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.refl-text{font-size:0.92rem;color:var(--ink-2);line-height:1.9}
+.pull-q{
+  font-family:'Playfair Display',serif;font-style:italic;font-size:1.3rem;font-weight:400;
+  color:var(--pink-dark);line-height:1.55;
+  border-top:2px solid var(--pink-soft);border-bottom:2px solid var(--pink-soft);
+  padding:1.5rem 0;margin:2rem 0;
+}
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
+/* ── SKILLS ── */
+.skills-bg{background:var(--pink-pale)}
+.skills-bg .page{padding-bottom:5rem}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.skill-card{
+  background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.5rem;
+}
+.skill-cat{
+  font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--pink);font-weight:600;margin-bottom:0.9rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.skill-cat::before{content:'';width:16px;height:2px;background:var(--pink);display:block}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.skill-tag{
+  background:var(--pink-pale);border:1px solid var(--border);border-radius:4px;
+  padding:0.25rem 0.65rem;font-size:0.78rem;color:var(--ink-2);
+}
 
-        /* Layout Main */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+/* ── RESOURCES ── */
+.res-bg .page{padding-bottom:5rem}
+.res-row{
+  display:grid;grid-template-columns:200px 1fr;gap:2rem;
+  padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:start;
+}
+.res-row:first-child{border-top:1px solid var(--border)}
+.res-name{font-size:0.88rem;font-weight:600;color:var(--ink);line-height:1.4}
+.res-desc{font-size:0.84rem;color:var(--ink-3);line-height:1.75}
+.res-desc a{color:var(--pink);text-decoration:none}
+.res-desc a:hover{text-decoration:underline}
 
-        section {
-            padding: 4rem 0 2rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
+/* ── FOOTER ── */
+footer{
+  background:var(--pink-dark);padding:3rem;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+}
+.ft-name{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.1rem;color:#fff;
+}
+.ft-right{font-size:0.7rem;letter-spacing:0.08em;color:rgba(255,255,255,0.45);text-align:right;line-height:1.8}
 
-        section:last-of-type {
-            border-bottom: none;
-        }
+/* ── APP SCREENSHOTS GALLERY ── */
+.screenshots-label{
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--pink);font-weight:600;margin-bottom:0.8rem;
+}
+.screenshots-row{
+  display:flex;gap:0.8rem;overflow-x:auto;padding-bottom:0.5rem;margin-bottom:1.5rem;
+  scrollbar-width:thin;scrollbar-color:var(--pink-soft) transparent;
+}
+.screenshot-frame{
+  flex-shrink:0;width:130px;border-radius:16px;overflow:hidden;
+  border:2px solid var(--border);background:var(--pink-pale);
+}
+.screenshot-frame img{width:100%;display:block}
+.screenshot-caption{
+  font-size:0.62rem;text-align:center;padding:0.4rem;
+  color:var(--ink-3);letter-spacing:0.05em;background:var(--white);
+}
 
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 4px;
-            background-color: var(--primary-color);
-            border-radius: 2px;
-        }
-
-        /* Profile/Home Section */
-        .profile-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .profile-meta {
-            border-right: 2px solid var(--primary-light);
-            padding-right: 1.5rem;
-        }
-
-        .profile-meta h1 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .meta-item {
-            margin-bottom: 0.75rem;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-        }
-
-        .meta-label {
-            font-weight: bold;
-            color: var(--text-light);
-            display: block;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-        }
-
-        .sdg-badge {
-            display: inline-block;
-            background-color: var(--primary-light);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-weight: bold;
-            margin-top: 1rem;
-        }
-
-        /* Grid Cards (Labs & Projects) */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            background: #000;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .card-description {
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        .reflection-block {
-            background-color: var(--primary-light);
-            border-left: 3px solid var(--primary-color);
-            padding: 0.75rem;
-            margin-top: auto;
-            font-size: 0.9rem;
-            font-style: italic;
-            color: var(--text-dark);
-        }
-
-        .project-meta-info {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* Buttons */
-        .btn-github {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #24292e;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 0.6rem 1rem;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            transition: background-color 0.2s;
-        }
-
-        .btn-github:hover {
-            background-color: var(--primary-color);
-        }
-
-        /* Skills section */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .skill-badge {
-            background-color: var(--primary-light);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Resources section */
-        .resources-box {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border: 1px solid var(--border-color);
-        }
-
-        .resources-box ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .resources-box li {
-            margin-bottom: 0.5rem;
-        }
-
-        .acknowledgement {
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            margin-top: 1rem;
-            font-style: italic;
-            color: var(--text-light);
-        }
-
-        /* Footer */
-        footer {
-            background-color: #212121;
-            color: #ffffff;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            font-size: 0.9rem;
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-
-            .profile-container {
-                grid-template-columns: 1fr;
-            }
-
-            .profile-meta {
-                border-right: none;
-                border-bottom: 2px solid var(--primary-light);
-                padding-right: 0;
-                padding-bottom: 1.5rem;
-            }
-
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  nav{padding:0 1.2rem}
+  .nav-brand{font-size:0.8rem}
+  .nav-links a{padding:1rem 0.6rem;font-size:0.6rem}
+  .hero{padding:4rem 1.5rem 0}
+  .hero-inner{grid-template-columns:1fr;padding-bottom:4rem;gap:2.5rem}
+  .page{padding:0 1.5rem}
+  .sec-num{font-size:2.2rem}
+  .proj-fields{grid-template-columns:1fr}
+  .refl-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .res-row{grid-template-columns:1fr;gap:0.4rem}
+  footer{flex-direction:column;padding:2rem 1.5rem}
+  .ft-right{text-align:left}
+}
+@media(max-width:480px){.skills-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="nav-brand">Mobile Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#labs">Labs</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#reflection">Reflection</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#resources">Resources</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- ── NAV ── -->
+<nav>
+  <span class="nav-brand">Arieka Syafiqah · A212044</span>
+  <div class="nav-links">
+    <a href="#labs">Labs</a>
+    <a href="#projects">Projects</a>
+    <a href="#reflection">Reflection</a>
+    <a href="#skills">Skills</a>
+    <a href="#resources">Resources</a>
+  </div>
+</nav>
 
-    <main>
-        <section id="home">
-            <div class="profile-container">
-                <div class="profile-meta">
-                    <h1>[YOUR NAME]</h1>
-                    <div class="meta-item">
-                        <span class="meta-label">Matric No</span>
-                        <strong>[YOUR MATRIC]</strong>
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Programme</span>
-                        [YOUR PROGRAMME]
-                    </div>
-                    <div class="meta-item">
-                        <span class="meta-label">Instructor</span>
-                        [INSTRUCTOR NAME]
-                    </div>
-                    <div class="sdg-badge">
-                        [SDG NUMBER + NAME]
-                    </div>
-                </div>
-                <div>
-                    <h2>Introduction</h2>
-                    <p style="margin-bottom: 1.5rem;">[WRITE YOUR INTRO]</p>
-                    <h3>SDG Commitment</h3>
-                    <p>We focus on [SDG NUMBER + NAME], because [ONE-LINE STATEMENT]</p>
-                </div>
-            </div>
-        </section>
+<!-- ── HERO ── -->
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker">Mobile Application Programming · TM2213 · UKM</div>
+      <h1>Arieka<br>Syafiqah<br><span>binti Mohamad<br>Eroleisam</span></h1>
+      <div class="hero-meta-row"><span class="hero-meta-label">Matric</span> A212044</div>
+      <div class="hero-meta-row"><span class="hero-meta-label">Programme</span> Software Engineering with Honours</div>
+      <div class="hero-meta-row"><span class="hero-meta-label">Instructor</span> Dr. Nazatul Aini</div>
+      <div class="hero-meta-row"><span class="hero-meta-label">University</span> Universiti Kebangsaan Malaysia</div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-intro">I built PawLife — a health &amp; wellness companion app where a virtual cat grows with your healthy habits. From basic layouts to full-stack mobile development with Firebase, GPS, and REST APIs.</p>
+      <div class="sdg-block">
+        <div class="sdg-num-big">3</div>
+        <div>
+          <div class="sdg-label">Chosen SDG</div>
+          <div class="sdg-name">Good Health &amp; Well-Being</div>
+          <div class="sdg-desc">PawLife makes healthy living engaging by letting users track workouts, hydration, and sleep — while a virtual cat companion rewards consistent habits with growth and care milestones.</div>
+        </div>
+      </div>
+      <div class="hero-pills">
+        <span class="hero-pill">Kotlin</span>
+        <span class="hero-pill">Jetpack Compose</span>
+        <span class="hero-pill">Room DB</span>
+        <span class="hero-pill">Firebase Firestore</span>
+        <span class="hero-pill">Open-Meteo API</span>
+        <span class="hero-pill">GPS / Location</span>
+        <span class="hero-pill">MVVM</span>
+      </div>
+    </div>
+  </div>
+</header>
 
-        <section id="labs">
-            <h2>Laboratory Exercises</h2>
-            <div class="card-grid">
-                
-                <div class="card">
-                    <div class="video-container">
-                        <iframe src="[LINK]" title="Lab 1 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Lab 1: User Interface (UI) Development</h3>
-                        <p class="card-description">Exploration of layouts, views, basic styling, and structured user interfaces for mobile viewports using modern development guidelines.</p>
-                        <div class="reflection-block">
-                            <strong>Reflection:</strong> [2–3 SENTENCES]
-                        </div>
-                    </div>
-                </div>
+<!-- ── LABS ── -->
+<div id="labs">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-num">02</div>
+      <h2 class="sec-title">Lab Work</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="labs-wrap">
 
-                <div class="card">
-                    <div class="video-container">
-                        <iframe src="[LINK]" title="Lab 2 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Lab 2: User Interaction & Events</h3>
-                        <p class="card-description">Implementation of event listeners, interactive components, forms, input state processing, and responsive action feedback loops.</p>
-                        <div class="reflection-block">
-                            <strong>Reflection:</strong> [2–3 SENTENCES]
-                        </div>
-                    </div>
-                </div>
+      <!-- Lab 1 -->
+      <div class="lab-card">
+        <div class="lab-card-top">
+          <div class="lab-num-badge">01</div>
+          <div class="lab-card-title">Basic Layout with Jetpack Compose</div>
+          <span class="lab-badge">UI Layout</span>
+        </div>
+        <div class="lab-body">
+          <div class="lab-btns">
+            <a href="https://www.youtube.com/watch?v=PLACEHOLDER_LAB1" target="_blank" class="btn-fill">&#9654; Watch VSR Video</a>
+            <a href="https://github.com/a212044/lab1" target="_blank" class="btn-line">&#9655; GitHub Repo</a>
+          </div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB1" allowfullscreen title="Lab 1 VSR"></iframe>
+          </div>
+          <div class="ref-label">Reflection</div>
+          <p class="ref-text">In Lab 1, I recreated the PawLife Home screen layout using Jetpack Compose's core composables — Row, Column, and Box — learning how Modifier chains like padding(), fillMaxWidth(), and weight() give declarative control over layout. Positioning the virtual cat avatar over the background banner using Box layering was the trickiest part, but it taught me how composable nesting works visually. This lab gave me the layout foundation that every subsequent screen was built on.</p>
+        </div>
+      </div>
 
-                <div class="card">
-                    <div class="video-container">
-                        <iframe src="[LINK]" title="Lab 3 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Lab 3: Material Design Integration</h3>
-                        <p class="card-description">Applying unified themes, color palettes, spacing rules, topography structures, and native material components to match current design systems.</p>
-                        <div class="reflection-block">
-                            <strong>Reflection:</strong> [2–3 SENTENCES]
-                        </div>
-                    </div>
-                </div>
+      <!-- Lab 2 -->
+      <div class="lab-card">
+        <div class="lab-card-top">
+          <div class="lab-num-badge">02</div>
+          <div class="lab-card-title">Interaction with Jetpack Compose</div>
+          <span class="lab-badge">User Interaction</span>
+        </div>
+        <div class="lab-body">
+          <div class="lab-btns">
+            <a href="https://www.youtube.com/watch?v=PLACEHOLDER_LAB2" target="_blank" class="btn-fill">&#9654; Watch VSR Video</a>
+            <a href="https://github.com/a212044/lab2" target="_blank" class="btn-line">&#9655; GitHub Repo</a>
+          </div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB2" allowfullscreen title="Lab 2 VSR"></iframe>
+          </div>
+          <div class="ref-label">Reflection</div>
+          <p class="ref-text">Lab 2 introduced interactivity through TextField, Button, and remember { mutableStateOf() } — I built an early version of the Log Workout dialog where users enter workout type, duration, and time. Understanding when to hoist state up versus keeping it local became clearer through building this form, and Compose's reactive model — where UI automatically reflects state changes — fundamentally changed how I think about building interfaces for PawLife.</p>
+        </div>
+      </div>
 
-                <div class="card">
-                    <div class="video-container">
-                        <iframe src="[LINK]" title="Lab 4 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Lab 4: Navigation Architecture</h3>
-                        <p class="card-description">Building structural destination routing, handling backstack sequences, implementing app bars, side drawers, or bottom navigation nodes.</p>
-                        <div class="reflection-block">
-                            <strong>Reflection:</strong> [2–3 SENTENCES]
-                        </div>
-                    </div>
-                </div>
+      <!-- Lab 3 -->
+      <div class="lab-card">
+        <div class="lab-card-top">
+          <div class="lab-num-badge">03</div>
+          <div class="lab-card-title">Material Design 3</div>
+          <span class="lab-badge">Material Design</span>
+        </div>
+        <div class="lab-body">
+          <div class="lab-btns">
+            <a href="https://www.youtube.com/watch?v=PLACEHOLDER_LAB3" target="_blank" class="btn-fill">&#9654; Watch VSR Video</a>
+            <a href="https://github.com/a212044/lab3" target="_blank" class="btn-line">&#9655; GitHub Repo</a>
+          </div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB3" allowfullscreen title="Lab 3 VSR"></iframe>
+          </div>
+          <div class="ref-label">Reflection</div>
+          <p class="ref-text">Lab 3 pushed me into Material Design 3's theming system, where I built PawLife's signature soft-pink palette using MaterialTheme with custom ColorScheme tokens. Understanding tonal surfaces and primary containers gave me the vocabulary to create a UI that feels consistently warm and playful without being garish. The pink gradient header and rounded card style that defines PawLife's identity was born directly from this lab.</p>
+        </div>
+      </div>
 
-                <div class="card">
-                    <div class="video-container">
-                        <iframe src="[LINK]" title="Lab 5 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Lab 5: Local Database with Room</h3>
-                        <p class="card-description">Structuring entities, data access objects (DAOs), repositories, and persistent SQLite frameworks through Android's abstraction systems.</p>
-                        <div class="reflection-block">
-                            <strong>Reflection:</strong> [2–3 SENTENCES]
-                        </div>
-                    </div>
-                </div>
+      <!-- Lab 4 -->
+      <div class="lab-card">
+        <div class="lab-card-top">
+          <div class="lab-num-badge">04</div>
+          <div class="lab-card-title">Navigation with Jetpack Compose</div>
+          <span class="lab-badge">Navigation</span>
+        </div>
+        <div class="lab-body">
+          <div class="lab-btns">
+            <a href="https://www.youtube.com/watch?v=PLACEHOLDER_LAB4" target="_blank" class="btn-fill">&#9654; Watch VSR Video</a>
+            <a href="https://github.com/a212044/lab4" target="_blank" class="btn-line">&#9655; GitHub Repo</a>
+          </div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB4" allowfullscreen title="Lab 4 VSR"></iframe>
+          </div>
+          <div class="ref-label">Reflection</div>
+          <p class="ref-text">Lab 4 introduced NavHost and NavController, which I used to connect PawLife's five main screens — Home, Workout, Water, Tasks, and Profile — through a bottom navigation bar. Sharing state between screens via a single ViewModel using StateFlow ensured activity counts on the Home dashboard updated instantly when a workout was logged on the Workout screen. This architectural pattern became the backbone of PawLife's entire multi-screen navigation.</p>
+        </div>
+      </div>
 
-            </div>
-        </section>
+      <!-- Lab 5 -->
+      <div class="lab-card">
+        <div class="lab-card-top">
+          <div class="lab-num-badge">05</div>
+          <div class="lab-card-title">Room Database</div>
+          <span class="lab-badge">Room DB</span>
+        </div>
+        <div class="lab-body">
+          <div class="lab-btns">
+            <a href="https://www.youtube.com/watch?v=PLACEHOLDER_LAB5" target="_blank" class="btn-fill">&#9654; Watch VSR Video</a>
+            <a href="https://github.com/a212044/lab5" target="_blank" class="btn-line">&#9655; GitHub Repo</a>
+          </div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/PLACEHOLDER_LAB5" allowfullscreen title="Lab 5 VSR"></iframe>
+          </div>
+          <div class="ref-label">Reflection</div>
+          <p class="ref-text">Lab 5 was the architectural keystone — integrating Room Database with DAOs and Entities completed the MVVM + Repository pattern. I built local persistence for PawLife's workout logs, hydration records, sleep data, and daily task completion states, keeping all database operations off the main thread via Kotlin coroutines. Handling schema migrations when I added new entities like SleepEntity and TaskEntity taught me versioning discipline that saved hours of debugging in Project 2.</p>
+        </div>
+      </div>
 
-        <section id="projects">
-            <h2>Course Projects</h2>
-            <div class="card-grid">
+    </div><!-- labs-wrap -->
+  </div>
+</div>
 
-                <div class="card">
-                    <div class="video-container">
-                        <iframe src="[LINK]" title="Project 1 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Project 1: [NAME]</h3>
-                        <div class="project-meta-info">
-                            <strong>Problem Statement:</strong> [1–2 SENTENCES]
-                        </div>
-                        <div class="reflection-block">
-                            <strong>Lessons Learned:</strong> [2–3 SENTENCES]
-                        </div>
-                        <a href="[LINK]" target="_blank" class="btn-github">View on GitHub</a>
-                    </div>
-                </div>
+<!-- ── PROJECTS ── -->
+<div class="projects-bg" id="projects">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-num">03</div>
+      <h2 class="sec-title">Projects</h2>
+      <div class="sec-rule"></div>
+    </div>
 
-                <div class="card">
-                    <div class="video-container">
-                        <iframe src="[LINK]" title="Project 2 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Project 2: [NAME]</h3>
-                        <div class="project-meta-info">
-                            <strong>Problem Statement:</strong> [1–2 SENTENCES]
-                        </div>
-                        <div class="reflection-block">
-                            <strong>Lessons Learned:</strong> [2–3 SENTENCES]
-                        </div>
-                        <a href="[LINK]" target="_blank" class="btn-github">View on GitHub</a>
-                    </div>
-                </div>
+    <!-- Project 1 -->
+    <div class="proj-card">
+      <div class="proj-header">
+        <div>
+          <div class="proj-num">Project 01</div>
+          <div class="proj-name">&#x1F431; PawLife</div>
+        </div>
+        <span class="proj-tag">Lab 4 + Working Features &middot; 5+ Screens</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-video">
+          <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P1" allowfullscreen title="Project 1 VSR"></iframe>
+        </div>
+        <div class="proj-fields">
+          <div>
+            <div class="field-label">Problem Statement</div>
+            <p class="field-text">Young Malaysians struggle to maintain consistent health habits — workouts start strong but fade without accountability or fun. PawLife solves this by giving users a virtual cat companion that visually grows healthier when they log their daily workouts, water intake, and tasks, creating an emotional connection that motivates healthy living in line with SDG 3.</p>
+          </div>
+          <div>
+            <div class="field-label">Key Features</div>
+            <p class="field-text">Five connected screens via Jetpack Navigation Compose: Home Dashboard (cat companion + activity summary), Workout Log with calendar, Hydration Tracker with quick-add buttons, Daily Tasks checklist with progress bar, and Profile. A shared PawLifeViewModel manages all state through StateFlow — adding a workout instantly updates the home cat's mood indicator.</p>
+          </div>
+          <div class="proj-field-full">
+            <div class="field-label">Lessons Learned</div>
+            <p class="field-text">Building PawLife reinforced how centralising state in a single ViewModel prevents data inconsistencies across screens. Designing the navigation graph with a persistent bottom bar taught me how NavigationBar composables integrate with NavHost without rebuilding the entire composable tree on tab switch. The "progress over perfection" design philosophy I adopted — showing a streak system rather than punishing missed days — made the UX feel genuinely supportive rather than stressful.</p>
+          </div>
+        </div>
+        <div class="lab-btns">
+          <a href="https://www.youtube.com/watch?v=PLACEHOLDER_P1" target="_blank" class="btn-fill">&#9654; YouTube VSR</a>
+          <a href="https://github.com/a212044/pawlife-project1" target="_blank" class="btn-line">&#9655; View on GitHub</a>
+        </div>
+      </div>
+    </div>
 
-            </div>
-        </section>
+    <!-- Project 2 -->
+    <div class="proj-card">
+      <div class="proj-header">
+        <div>
+          <div class="proj-num">Project 02</div>
+          <div class="proj-name">&#x1F30F; PawLife Advanced</div>
+        </div>
+        <span class="proj-tag">Lab 5 + API + GPS + Firebase &middot; 7+ Screens</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-video">
+          <iframe src="https://www.youtube.com/embed/PLACEHOLDER_P2" allowfullscreen title="Project 2 VSR"></iframe>
+        </div>
 
-        <section id="reflection">
-            <h2>Overall Learning Journey</h2>
-            <div class="resources-box">
-                <p style="font-size: 1.1rem; line-height: 1.8;">[REFLECTION & LEARNING JOURNEY: 3–4 SENTENCES]</p>
-            </div>
-        </section>
+        <!-- App screenshots gallery -->
+        <div class="screenshots-label">App Screenshots</div>
+        <div class="screenshots-row">
+          <div class="screenshot-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='200' fill='%23fce4ec'%3E%3Crect width='130' height='200' fill='%23fce4ec'/%3E%3Ctext x='65' y='105' text-anchor='middle' font-size='11' fill='%23c2185b'%3EHome%3C/text%3E%3C/svg%3E" alt="PawLife Home screen">
+            <div class="screenshot-caption">Home</div>
+          </div>
+          <div class="screenshot-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='200' fill='%23fce4ec'%3E%3Crect width='130' height='200' fill='%23fce4ec'/%3E%3Ctext x='65' y='105' text-anchor='middle' font-size='11' fill='%23c2185b'%3EWorkout%3C/text%3E%3C/svg%3E" alt="Workout screen">
+            <div class="screenshot-caption">Workout</div>
+          </div>
+          <div class="screenshot-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='200' fill='%23fce4ec'%3E%3Crect width='130' height='200' fill='%23fce4ec'/%3E%3Ctext x='65' y='105' text-anchor='middle' font-size='11' fill='%23c2185b'%3EHydration%3C/text%3E%3C/svg%3E" alt="Hydration screen">
+            <div class="screenshot-caption">Hydration</div>
+          </div>
+          <div class="screenshot-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='200' fill='%23fce4ec'%3E%3Crect width='130' height='200' fill='%23fce4ec'/%3E%3Ctext x='65' y='105' text-anchor='middle' font-size='11' fill='%23c2185b'%3ETasks%3C/text%3E%3C/svg%3E" alt="Tasks screen">
+            <div class="screenshot-caption">Daily Tasks</div>
+          </div>
+          <div class="screenshot-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='200' fill='%23fce4ec'%3E%3Crect width='130' height='200' fill='%23fce4ec'/%3E%3Ctext x='65' y='105' text-anchor='middle' font-size='11' fill='%23c2185b'%3EOutdoor%3C/text%3E%3C/svg%3E" alt="Outdoor Conditions screen">
+            <div class="screenshot-caption">Outdoor</div>
+          </div>
+          <div class="screenshot-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='200' fill='%23fce4ec'%3E%3Crect width='130' height='200' fill='%23fce4ec'/%3E%3Ctext x='65' y='105' text-anchor='middle' font-size='11' fill='%23c2185b'%3ECommunity%3C/text%3E%3C/svg%3E" alt="Community screen">
+            <div class="screenshot-caption">Community</div>
+          </div>
+          <div class="screenshot-frame">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='200' fill='%23fce4ec'%3E%3Crect width='130' height='200' fill='%23fce4ec'/%3E%3Ctext x='65' y='105' text-anchor='middle' font-size='11' fill='%23c2185b'%3EProfile%3C/text%3E%3C/svg%3E" alt="Profile screen">
+            <div class="screenshot-caption">Profile</div>
+          </div>
+        </div>
 
-        <section id="skills">
-            <h2>Skills & Technical Stack</h2>
-            <div class="skills-list">
-                <span class="skill-badge">Kotlin</span>
-                <span class="skill-badge">Jetpack Compose</span>
-                <span class="skill-badge">Room Database</span>
-                <span class="skill-badge">Retrofit</span>
-                <span class="skill-badge">Firebase Firestore</span>
-                <span class="skill-badge">ML Kit</span>
-                <span class="skill-badge">CameraX</span>
-            </div>
-        </section>
+        <div class="proj-fields">
+          <div>
+            <div class="field-label">Problem Statement</div>
+            <p class="field-text">PawLife needed to become context-aware — knowing whether outdoor conditions were safe for a run, syncing habit data across devices, and connecting users in a shared community. PawLife Advanced integrates the Open-Meteo REST API for real-time weather data via GPS location, Firebase Firestore for cloud-synced community posts, Firebase Auth for secure accounts, and Room for robust local persistence — all tied to SDG 3: Good Health &amp; Well-Being.</p>
+          </div>
+          <div>
+            <div class="field-label">Key Features</div>
+            <p class="field-text">Seven+ screens including the new Outdoor Conditions screen (GPS + Open-Meteo weather API showing temperature, humidity, wind, UV index and safe-to-exercise advice), Community Feed (Firebase Firestore — post and view community workouts in real time), Sleep Tracker modal with a slider UI, and a Profile screen with personalised stats. All data persists locally via Room and syncs to the cloud via Firebase.</p>
+          </div>
+          <div class="proj-field-full">
+            <div class="field-label">Lessons Learned</div>
+            <p class="field-text">The most complex challenge was orchestrating Room and Firebase Firestore together — ensuring local inserts and cloud syncs happened in the correct order without blocking the main thread, which deepened my understanding of Kotlin coroutines and suspend functions as architectural tools. Integrating the Open-Meteo REST API via Retrofit required careful JSON parsing and graceful handling of API timeouts — I learned to show cached local data when the network was unavailable. Building the community feed taught me Firestore's real-time listeners, which required careful lifecycle management to avoid memory leaks by cancelling listeners in onCleared() of the ViewModel. GPS integration introduced runtime permission flows that required thoughtful first-launch UX, which significantly improved the app's polish and made PawLife feel like a production-quality application.</p>
+          </div>
+        </div>
+        <div class="lab-btns">
+          <a href="https://www.youtube.com/watch?v=PLACEHOLDER_P2" target="_blank" class="btn-fill">&#9654; YouTube VSR</a>
+          <a href="https://github.com/a212044/pawlife-advanced" target="_blank" class="btn-line">&#9655; View on GitHub</a>
+        </div>
+      </div>
+    </div>
 
-        <section id="resources">
-            <h2>Resources & Acknowledgements</h2>
-            <div class="resources-box">
-                <h3>APIs & Libraries Used</h3>
-                <p style="margin-bottom: 1rem;">[LIST OF APIS/LIBRARIES USED + ACKNOWLEDGEMENT OF AI ASSISTANCE]</p>
-                <div class="acknowledgement">
-                    <p><strong>AI Assistance Disclaimer:</strong> Generative AI tools (Claude, ChatGPT, Gemini) were utilized for rapid front-end prototyping, layout structuring, and optimization of this responsive portfolio interface.</p>
-                </div>
-            </div>
-        </section>
-    </main>
+  </div>
+</div>
 
-    <footer>
-        <p>&copy; 2026 ARIEKA SYAFIQAH BINTI MOHAMAD EROLEISAM | Matric No: A212044 </p>
-        <p>Mobile Application Programming e-Portfolio</p>
-    </footer>
+<!-- ── REFLECTION ── -->
+<div class="refl-bg" id="reflection">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-num">04</div>
+      <h2 class="sec-title">Reflection &amp; Learning Journey</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="refl-grid" style="padding-bottom:5rem">
+      <div>
+        <p class="refl-text">My journey began in Lab 1 where I learned the very basics of Jetpack Compose — laying out UI elements using Row, Column, Box, and Text to recreate PawLife's home screen. It felt simple but foundational. By Lab 2, I added interactivity through TextField and Button with state management, which revealed how Compose's reactive model keeps UI in sync with data without manual view updates. Lab 3 was where PawLife found its visual identity — applying a soft-pink Material Design 3 palette with rounded surfaces and gradient headers that made the app feel warm and encouraging. Lab 4 introduced multi-screen navigation and ViewModel, teaching me how to share state across the five main screens through a persistent bottom navigation bar. Lab 5 was the architectural turning point — Room Database with the full MVVM + Repository pattern made PawLife's data genuinely persistent and reliable.</p>
+        <div class="pull-q">"A virtual cat that grows with your healthy habits — what started as a layout exercise became a full-stack wellness application."</div>
+        <p class="refl-text">By Project 2, PawLife had integrated every lab's lessons: Room for local data, Firebase Firestore for the Community Feed, the Open-Meteo REST API via Retrofit for weather-aware outdoor workout advice, and GPS via FusedLocationProviderClient for real-time location. The app I shipped was unrecognisable from my Lab 1 screens — and that gap represents the learning.</p>
+      </div>
+      <div>
+        <p class="refl-text">The biggest technical challenge was making the Outdoor Conditions screen work reliably. Getting GPS coordinates, passing them to the Open-Meteo API via Retrofit, parsing the JSON response, and rendering the result — all asynchronously without blocking the UI — required me to properly understand coroutine scopes, Flow, and the Repository pattern working together as a real pipeline rather than abstract concepts.</p>
+        <p class="refl-text" style="margin-top:1.5rem">Integrating Firebase Firestore alongside Room was another challenge — ensuring local inserts and cloud syncs happened in the correct order without blocking the main thread taught me to treat Kotlin coroutines and suspend functions as architectural tools, not just concurrency helpers. Managing Firestore's real-time listeners without causing memory leaks — by cancelling them in the ViewModel's onCleared() — was the kind of production-quality detail that Lab exercises don't cover but real apps demand.</p>
+        <p class="refl-text" style="margin-top:1.5rem">Looking back, the most important skill this course developed was not any single API or library — it was the discipline of layered architecture. Once MVVM + Repository + Room was solid in Lab 5, adding Firebase, Retrofit, and GPS in Project 2 felt like extending a system rather than rewriting one. That composability is what I will carry forward into every project I build.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SKILLS ── -->
+<div class="skills-bg" id="skills">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-num">05</div>
+      <h2 class="sec-title">Skills &amp; Tech Stack</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="skills-grid" style="padding-bottom:5rem">
+      <div class="skill-card">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">XML</span>
+          <span class="skill-tag">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">UI Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Jetpack Compose</span>
+          <span class="skill-tag">Material Design 3</span>
+          <span class="skill-tag">Android Studio</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Architecture</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MVVM</span>
+          <span class="skill-tag">Repository Pattern</span>
+          <span class="skill-tag">StateFlow</span>
+          <span class="skill-tag">Kotlin Coroutines</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Data &amp; Cloud</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Room Database</span>
+          <span class="skill-tag">Firebase Firestore</span>
+          <span class="skill-tag">Firebase Auth</span>
+          <span class="skill-tag">Retrofit 2</span>
+          <span class="skill-tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Sensors &amp; Location</div>
+        <div class="skill-tags">
+          <span class="skill-tag">GPS / Location</span>
+          <span class="skill-tag">FusedLocationProvider</span>
+          <span class="skill-tag">Open-Meteo API</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Git / GitHub</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">GitHub Pages</span>
+          <span class="skill-tag">Postman</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESOURCES ── -->
+<div class="res-bg" id="resources">
+  <div class="page">
+    <div class="sec-head">
+      <div class="sec-num">06</div>
+      <h2 class="sec-title">Resources &amp; Acknowledgements</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Open-Meteo API</div>
+      <p class="res-desc">Free, open-source weather API used in the Outdoor Conditions screen to fetch real-time temperature, humidity, wind speed, and UV index based on GPS coordinates — no API key required. <a href="https://open-meteo.com/en/docs" target="_blank">open-meteo.com/en/docs</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Retrofit 2</div>
+      <p class="res-desc">Type-safe HTTP client for Android used to make REST API calls to Open-Meteo with Gson converter for JSON parsing. <a href="https://square.github.io/retrofit" target="_blank">square.github.io/retrofit</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Firebase Firestore</div>
+      <p class="res-desc">Cloud NoSQL database used for the Community Feed — storing and retrieving community workout posts in real time with snapshot listeners. <a href="https://firebase.google.com/docs/firestore" target="_blank">firebase.google.com/docs/firestore</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Firebase Authentication</div>
+      <p class="res-desc">Provides secure anonymous and email-based user authentication so Community Feed posts are attributed to individual users. <a href="https://firebase.google.com/docs/auth" target="_blank">firebase.google.com/docs/auth</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Room (AndroidX)</div>
+      <p class="res-desc">Local SQLite persistence library storing workout logs, hydration records, sleep data, task completion states, and user profile on-device. <a href="https://developer.android.com/training/data-storage/room" target="_blank">developer.android.com/training/data-storage/room</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Jetpack Compose</div>
+      <p class="res-desc">Android's modern declarative UI toolkit used to build the entire PawLife interface across all labs and projects. <a href="https://developer.android.com/jetpack/compose" target="_blank">developer.android.com/jetpack/compose</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Jetpack Navigation Compose</div>
+      <p class="res-desc">Manages screen-to-screen navigation with a single NavHost and a persistent bottom navigation bar across all five main screens. <a href="https://developer.android.com/jetpack/compose/navigation" target="_blank">developer.android.com/jetpack/compose/navigation</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Google Play Services Location</div>
+      <p class="res-desc">FusedLocationProviderClient used to obtain the device's GPS coordinates for the Outdoor Conditions screen weather lookup. <a href="https://developers.google.com/android/reference" target="_blank">developers.google.com/android/reference</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">Material Design 3</div>
+      <p class="res-desc">Design system providing theming, typography, colour schemes, and accessible UI components — the visual foundation for PawLife's soft-pink identity. <a href="https://m3.material.io" target="_blank">m3.material.io</a></p>
+    </div>
+    <div class="res-row">
+      <div class="res-name">AI Assistance — Claude (Anthropic)</div>
+      <p class="res-desc">Used throughout development for debugging Kotlin/Compose errors, explaining Room setup (DAOs, entities, migrations), structuring MVVM architecture (Repository pattern, StateFlow, ViewModel factories), and reviewing navigation logic. All prompts were provided by the developer; all generated code was reviewed, understood, and integrated manually.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="ft-name">Arieka Syafiqah binti Mohamad Eroleisam</span>
+  <div class="ft-right">
+    A212044 &middot; TM2213 &middot; UKM FTSM<br>
+    SDG 3 — Good Health &amp; Well-Being &middot; 2026
+  </div>
+</footer>
 
 </body>
 </html>
