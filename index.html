@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student e-Portfolio | Mobile Programming</title>
+    <style>
+        :root {
+            --primary-color: #d81b60; /* Vibrant Pink */
+            --primary-light: #fce4ec; /* Light Pastel Pink */
+            --secondary-color: #8e24aa; /* Purple Accent */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #fff5f8; /* Soft Pinkish Background */
+            --card-bg: #ffffff;
+            --border-color: #f8bbd0; /* Soft Pink Border */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        body {
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 5px rgba(216, 27, 96, 0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-brand {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Layout Main */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            padding: 4rem 0 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* Profile/Home Section */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(216, 27, 96, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .profile-meta {
+            border-right: 2px solid var(--primary-light);
+            padding-right: 1.5rem;
+        }
+
+        .profile-meta h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .meta-item {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: var(--text-light);
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .sdg-badge {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        /* Grid Cards (Labs & Projects) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background: #000;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .reflection-block {
+            background-color: var(--primary-light);
+            border-left: 3px solid var(--primary-color);
+            padding: 0.75rem;
+            margin-top: auto;
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+
+        .project-meta-info {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Buttons */
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #24292e;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-github:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Skills section */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .skill-badge {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Resources section */
+        .resources-box {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .resources-box ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .resources-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .acknowledgement {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #212121;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-meta {
+                border-right: none;
+                border-bottom: 2px solid var(--primary-light);
+                padding-right: 0;
+                padding-bottom: 1.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="nav-brand">Mobile Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#labs">Labs</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="profile-container">
+                <div class="profile-meta">
+                    <h1>[YOUR NAME]</h1>
+                    <div class="meta-item">
+                        <span class="meta-label">Matric No</span>
+                        <strong>[YOUR MATRIC]</strong>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Programme</span>
+                        [YOUR PROGRAMME]
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Instructor</span>
+                        [INSTRUCTOR NAME]
+                    </div>
+                    <div class="sdg-badge">
+                        [SDG NUMBER + NAME]
+                    </div>
+                </div>
+                <div>
+                    <h2>Introduction</h2>
+                    <p style="margin-bottom: 1.5rem;">[WRITE YOUR INTRO]</p>
+                    <h3>SDG Commitment</h3>
+                    <p>We focus on [SDG NUMBER + NAME], because [ONE-LINE STATEMENT]</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="labs">
+            <h2>Laboratory Exercises</h2>
+            <div class="card-grid">
+                
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="[LINK]" title="Lab 1 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Lab 1: User Interface (UI) Development</h3>
+                        <p class="card-description">Exploration of layouts, views, basic styling, and structured user interfaces for mobile viewports using modern development guidelines.</p>
+                        <div class="reflection-block">
+                            <strong>Reflection:</strong> [2–3 SENTENCES]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="[LINK]" title="Lab 2 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Lab 2: User Interaction & Events</h3>
+                        <p class="card-description">Implementation of event listeners, interactive components, forms, input state processing, and responsive action feedback loops.</p>
+                        <div class="reflection-block">
+                            <strong>Reflection:</strong> [2–3 SENTENCES]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="[LINK]" title="Lab 3 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Lab 3: Material Design Integration</h3>
+                        <p class="card-description">Applying unified themes, color palettes, spacing rules, topography structures, and native material components to match current design systems.</p>
+                        <div class="reflection-block">
+                            <strong>Reflection:</strong> [2–3 SENTENCES]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="[LINK]" title="Lab 4 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Lab 4: Navigation Architecture</h3>
+                        <p class="card-description">Building structural destination routing, handling backstack sequences, implementing app bars, side drawers, or bottom navigation nodes.</p>
+                        <div class="reflection-block">
+                            <strong>Reflection:</strong> [2–3 SENTENCES]
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="[LINK]" title="Lab 5 Video Demonstration" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Lab 5: Local Database with Room</h3>
+                        <p class="card-description">Structuring entities, data access objects (DAOs), repositories, and persistent SQLite frameworks through Android's abstraction systems.</p>
+                        <div class="reflection-block">
+                            <strong>Reflection:</strong> [2–3 SENTENCES]
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Course Projects</h2>
+            <div class="card-grid">
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="[LINK]" title="Project 1 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Project 1: [NAME]</h3>
+                        <div class="project-meta-info">
+                            <strong>Problem Statement:</strong> [1–2 SENTENCES]
+                        </div>
+                        <div class="reflection-block">
+                            <strong>Lessons Learned:</strong> [2–3 SENTENCES]
+                        </div>
+                        <a href="[LINK]" target="_blank" class="btn-github">View on GitHub</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="video-container">
+                        <iframe src="[LINK]" title="Project 2 Video Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Project 2: [NAME]</h3>
+                        <div class="project-meta-info">
+                            <strong>Problem Statement:</strong> [1–2 SENTENCES]
+                        </div>
+                        <div class="reflection-block">
+                            <strong>Lessons Learned:</strong> [2–3 SENTENCES]
+                        </div>
+                        <a href="[LINK]" target="_blank" class="btn-github">View on GitHub</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="reflection">
+            <h2>Overall Learning Journey</h2>
+            <div class="resources-box">
+                <p style="font-size: 1.1rem; line-height: 1.8;">[REFLECTION & LEARNING JOURNEY: 3–4 SENTENCES]</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Skills & Technical Stack</h2>
+            <div class="skills-list">
+                <span class="skill-badge">Kotlin</span>
+                <span class="skill-badge">Jetpack Compose</span>
+                <span class="skill-badge">Room Database</span>
+                <span class="skill-badge">Retrofit</span>
+                <span class="skill-badge">Firebase Firestore</span>
+                <span class="skill-badge">ML Kit</span>
+                <span class="skill-badge">CameraX</span>
+            </div>
+        </section>
+
+        <section id="resources">
+            <h2>Resources & Acknowledgements</h2>
+            <div class="resources-box">
+                <h3>APIs & Libraries Used</h3>
+                <p style="margin-bottom: 1rem;">[LIST OF APIS/LIBRARIES USED + ACKNOWLEDGEMENT OF AI ASSISTANCE]</p>
+                <div class="acknowledgement">
+                    <p><strong>AI Assistance Disclaimer:</strong> Generative AI tools (Claude, ChatGPT, Gemini) were utilized for rapid front-end prototyping, layout structuring, and optimization of this responsive portfolio interface.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ARIEKA SYAFIQAH BINTI MOHAMAD EROLEISAM | Matric No: A212044 </p>
+        <p>Mobile Application Programming e-Portfolio</p>
+    </footer>
+
+</body>
+</html>
